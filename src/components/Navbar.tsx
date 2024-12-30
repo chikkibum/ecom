@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, X, User, ShoppingCart } from "lucide-react";
@@ -6,28 +6,36 @@ import { Search, X, User, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ModeToggle } from "@/components/mode-toggle";
+import { ReactNode } from "react";
+import { NavLink as RouterNavLink } from "react-router-dom";  // Import NavLink
+import { Profile } from "./Profile";
+import { Cart } from "./Cart";
 
-const NavLink = ({ href, children }) => (
+interface NavLinkProps {
+  href: string;
+  children: ReactNode;
+}
+
+const NavLink = ({ href, children }: NavLinkProps) => (
   <motion.li
     whileHover={{ opacity: 0.7 }}
     transition={{ duration: 0.1 }}
     whileTap={{ scale: 0.95 }}
     className="relative"
   >
-    <Link
+    <RouterNavLink
       to={href}
-      className="text-foreground hover:text-primary transition-colors"
+      className={({ isActive }) =>
+        `text-foreground hover:text-primary transition-colors ${
+          isActive ? 'underline ' : '' // Underline when active
+        }`
+      }
     >
       {children}
-    </Link>
-    <motion.div
-      className="absolute bottom-0 left-0 w-full h-0.5 bg-primary"
-      initial={{ scaleX: 0 }}
-      whileHover={{ scaleX: 1 }}
-      transition={{ duration: 0.2 }}
-    />
+    </RouterNavLink>
   </motion.li>
 );
+
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -42,7 +50,7 @@ const Navbar = () => {
               🧑‍💻
             </Link>
 
-            <ul className="hidden   md:flex space-x-6">
+            <ul className="hidden md:flex space-x-6">
               <NavLink href="/">Home</NavLink>
               <NavLink href="/collection">Collection</NavLink>
               <NavLink href="/about">About</NavLink>
@@ -87,18 +95,29 @@ const Navbar = () => {
             </motion.div>
 
             <Button variant="ghost" size="icon">
-                <User />
+              <Profile/>
             </Button>
 
             <Button variant="ghost" size="icon">
-
-                <ShoppingCart size={'25px'} />
+            <Link to="/cart">
+              <Cart />
+            </Link>
             </Button>
+            
             <ModeToggle />
           </div>
 
           <div className="menu lg:hidden flex items-center gap-2">
             <ModeToggle />
+            <Button variant="ghost" size="icon">
+            <Profile/>
+              
+            </Button>
+            <Button variant="ghost" size="icon">
+            <Link to="/cart">
+              <Cart />
+            </Link>
+            </Button>
             <Button
               variant="ghost"
               size="icon"
@@ -137,7 +156,7 @@ const Navbar = () => {
               transition={{ duration: 0.2 }}
               className="lg:hidden mt-4 space-y-4 px-2"
             >
-              <ul className="flex flex-col md:hidden space-y-4">
+              <ul className="flex flex-col md:hidden items-center space-y-4">
                 <NavLink href="/">Home</NavLink>
                 <NavLink href="/collection">Collection</NavLink>
                 <NavLink href="/about">About</NavLink>
