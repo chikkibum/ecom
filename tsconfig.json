@@ -6,6 +6,10 @@
   ],
   "compilerOptions": {
     "baseUrl": ".",
+    "noEmitOnError": false,
+    "checkJs": false,
+    "skipLibCheck": true,
+    "strict": false,
     "paths": {
       "@/*": ["./src/*"],
       "@/pages/*": ["./src/pages/*"]

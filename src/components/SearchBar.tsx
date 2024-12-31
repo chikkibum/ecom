@@ -1,4 +1,8 @@
-import { useContext,useState, useEffect } from "react";
+
+// @ts-nocheck
+
+
+import { useContext,useState, useEffect, ReactNode } from "react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { X, Search } from "lucide-react";

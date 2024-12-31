@@ -1,16 +1,13 @@
-import { useState } from "react";
+import {  useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, X, User, ShoppingCart } from "lucide-react";
 import { SearchBar } from "./SearchBar";
-
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { ModeToggle } from "@/components/mode-toggle";
 import { ReactNode } from "react";
 import { NavLink as RouterNavLink } from "react-router-dom";  // Import NavLink
 import { Profile } from "./Profile";
-import { Cart } from "./Cart";
+import { CartIcon } from "./CartIcon";
 
 interface NavLinkProps {
   href: string;
@@ -102,7 +99,7 @@ const Navbar = () => {
 
             <Button variant="ghost" size="icon">
             <Link to="/cart">
-              <Cart />
+              <CartIcon />
             </Link>
             </Button>
             
@@ -117,7 +114,7 @@ const Navbar = () => {
             </Button>
             <Button variant="ghost" size="icon">
             <Link to="/cart">
-              <Cart />
+              <CartIcon />
             </Link>
             </Button>
             <Button

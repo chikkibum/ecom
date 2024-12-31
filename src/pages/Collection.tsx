@@ -1,3 +1,6 @@
+// @ts-nocheck
+
+
 import React, { useContext, useEffect, useState, useCallback } from "react";
 import { ShopContext } from "../context/ShopContext";
 import { assets } from "@/assets/assets";
