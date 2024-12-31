@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, X, User, ShoppingCart } from "lucide-react";
+import { SearchBar } from "./SearchBar";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -39,7 +40,7 @@ const NavLink = ({ href, children }: NavLinkProps) => (
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  // const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   return (
     <nav className="w-full py-4">
@@ -59,7 +60,7 @@ const Navbar = () => {
           </div>
 
           <div className="hidden lg:flex items-center space-x-4">
-            <div className="search__container">
+            {/* <div className="search__container">
               <AnimatePresence>
                 {isSearchOpen && (
                   <motion.div
@@ -77,9 +78,9 @@ const Navbar = () => {
                   </motion.div>
                 )}
               </AnimatePresence>
-            </div>
+            </div> */}
 
-            <motion.div
+            {/* <motion.div
               initial={false}
               animate={{ width: 40, opacity: 1 }}
               className="flex items-center"
@@ -92,7 +93,8 @@ const Navbar = () => {
               >
                 {isSearchOpen ? <X /> : <Search />}
               </Button>
-            </motion.div>
+            </motion.div> */}
+            <SearchBar className={''} />
 
             <Button variant="ghost" size="icon">
               <Profile/>
@@ -163,7 +165,7 @@ const Navbar = () => {
                 <NavLink href="/contact">Contact</NavLink>
               </ul>
               <div className="flex flex-col space-y-2 mt-16 md:py-8">
-                <Input type="search" placeholder="Search..." />
+                <SearchBar className={" justify-center"}/>
                 <Button variant="outline" className="w-full">
                   Login
                 </Button>

@@ -4,7 +4,7 @@ import { ShopContext } from '../context/ShopContext'
 import {Link} from 'react-router-dom'
 
 interface ProductItemProps {
-  id: number;
+  id: string;
   image: string[];
   name: string;
   price: number;
