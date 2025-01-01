@@ -98,7 +98,7 @@ export default function OrderForm() {
 
   return (
     <motion.div
-      className="bg-white p-8 rounded-lg shadow-md"
+      className="bg-white dark:border-2 dark:bg-black p-8 rounded-lg shadow-md"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}

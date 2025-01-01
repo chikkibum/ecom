@@ -52,7 +52,7 @@ export function Contact() {
     <section className="py-24 bg-background">
       <div className="container mx-auto px-4">
         <motion.h2 
-          className="text-4xl font-light mb-16 text-center tracking-wide text-foreground"
+          className="text-4xl  font-light mb-16 text-center tracking-wide text-foreground"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -60,7 +60,7 @@ export function Contact() {
           Get in Touch
         </motion.h2>
         <motion.form 
-          className="max-w-lg mx-auto space-y-6"
+          className="max-w-lg border-2  rounded-lg p-12 mx-auto space-y-6"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
