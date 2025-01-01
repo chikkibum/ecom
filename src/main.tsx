@@ -111,7 +111,7 @@ createRoot(document.getElementById("root")!).render(
     
       <Router>
       <ShopProvider>
-        <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+        <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
           <Navbar />
           <AnimatedRoutes />
           <Footer />

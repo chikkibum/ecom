@@ -4,22 +4,22 @@ import { motion } from 'framer-motion';
 const pageVariants = {
   initial: {
     opacity: 0,
-    scale: 0.95, // Slight zoom-out effect
+    scale: 0.95,
   },
   in: {
     opacity: 1,
-    scale: 1, // Restore to normal size
+    scale: 1,
   },
   out: {
     opacity: 0,
-    scale: 1.05, // Slight zoom-in effect on exit
+    scale: 1.05,
   },
 };
 
 const pageTransition = {
-  type: "ease out", // Smooth spring animation
-  stiffness: 100, // Gentle spring effect
-  duration: 0.2, // Reduced duration for subtlety
+  type: 'ease out',
+  stiffness: 100,
+  duration: 0.2,
 };
 
 export const PageTransition = ({ children }: { children: React.ReactNode }) => {
@@ -31,7 +31,14 @@ export const PageTransition = ({ children }: { children: React.ReactNode }) => {
       variants={pageVariants}
       transition={pageTransition}
     >
-      {children}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        {children}
+      </motion.div>
     </motion.div>
   );
 };

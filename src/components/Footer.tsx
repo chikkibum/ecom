@@ -9,7 +9,7 @@ export const Footer = () => {
                     👨‍💻
                     </Link>
                     <p className='w-full md:w-2/3 text-gray-600'>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lor
+                    Welcome to our online marketplace, where quality meets convenience.
                     </p>
                 </div>
 
