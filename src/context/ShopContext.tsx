@@ -1,7 +1,8 @@
-import { createContext, ReactNode, useState } from 'react';
-import { products as productsData } from '../assets/assets'; // Rename the imported alias to avoid confusion
-import { toast } from "sonner";
+import { createContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
+import { products as productsData } from '@/assets/assets';
+
 interface ShopContextType {
     products: {
         _id: string;
@@ -26,20 +27,83 @@ interface ShopContextType {
     getCartCount: () => number;
     updateQuantity: (id: string, size: string, quantity: number) => void;
     getCartAmount: () => number;
-    navigate: (path: string) => void;   
+    resetCart: () => void;
+    placeOrder: () => void;
+    placedOrders: Order[];
+    setPlacedOrders: (orders: Order[]) => void;
+    setCartItems: (items: Record<string, Record<string, number>>) => void;
+    navigate: (path: string) => void;
 }
 
-const ShopContext = createContext<ShopContextType | undefined>(undefined);
+interface Order {
+    id: number;
+    date: string;
+    items: Record<string, Record<string, number>>;
+    status?: string;
+    totalAmount?: number;
+}
 
-const ShopProvider = ({ children }: { children: ReactNode }) => {
-    const currency = '$';
-    const delivery_fee = 10;
-    const [search, setSearch] = useState('');
-    const [isSearchOpen, setIsSearchOpen] = useState(true);
-    const [cartItems, setCartItems] = useState<Record<string, Record<string, number>>>({});
+export const ShopContext = createContext<ShopContextType | null>(null);
+
+export const ShopProvider = ({ children }: { children: React.ReactNode }) => {
     const navigate = useNavigate();
+    const currency = "₹";
+    const delivery_fee = 40;
 
-    const addToCart = async (itemId: string, size: string) => {
+    // Initialize state from localStorage or default values
+    const [cartItems, setCartItems] = useState<Record<string, Record<string, number>>>(() => {
+        const saved = localStorage.getItem('cartItems');
+        return saved ? JSON.parse(saved) : {};
+    });
+
+    const [placedOrders, setPlacedOrders] = useState<Order[]>(() => {
+        const saved = localStorage.getItem('placedOrders');
+        return saved ? JSON.parse(saved) : [];
+    });
+
+    const [search, setSearch] = useState("");
+    const [isSearchOpen, setIsSearchOpen] = useState(false);
+
+    // Save to localStorage whenever state changes
+    useEffect(() => {
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    }, [cartItems]);
+
+    useEffect(() => {
+        localStorage.setItem('placedOrders', JSON.stringify(placedOrders));
+    }, [placedOrders]);
+
+    const resetCart = () => {
+        setCartItems({});
+        localStorage.removeItem('cartItems');
+    };
+
+    const placeOrder = () => {
+        if (getCartCount() === 0) {
+            toast.error("Cart is empty. Please add items before placing an order.");
+            return;
+        }
+
+        const order: Order = {
+            id: Date.now(),
+            date: new Date().toLocaleString(),
+            items: { ...cartItems },
+            status: 'Pending',
+            totalAmount: getCartAmount() + delivery_fee
+        };
+
+        setPlacedOrders((prevOrders) => {
+            const newOrders = [order, ...prevOrders];
+            localStorage.setItem('placedOrders', JSON.stringify(newOrders));
+            return newOrders;
+        });
+
+        resetCart();
+        toast.success("Your order has been placed successfully!");
+        navigate('/orders');
+    };
+
+    const addToCart = (itemId: string, size: string) => {
         if (!itemId || !size) {
             return toast.error("Please select a size");
         }
@@ -76,31 +140,38 @@ const ShopProvider = ({ children }: { children: ReactNode }) => {
         return count;
     };
 
-    const updateQuantity = async (itemId: string, size: string, quantity: number) => {
+    const updateQuantity = (itemId: string, size: string, quantity: number) => {
         const cartData = structuredClone(cartItems);
-        cartData[itemId][size] = quantity;
+        if (quantity === 0) {
+            delete cartData[itemId][size];
+            if (Object.keys(cartData[itemId]).length === 0) {
+                delete cartData[itemId];
+            }
+        } else {
+            cartData[itemId][size] = quantity;
+        }
         setCartItems(cartData);
-    }
+    };
 
     const getCartAmount = () => {
         let totalAmount = 0;
-        for(const items in cartItems){
-          const itemInfo = productsData.find((product)=> product._id === items);
-          for(const item in cartItems[items]){
-            try {
-              if (cartItems[items][item] > 0 && itemInfo) {
-                totalAmount += itemInfo.price * cartItems[items][item];
-              }
-            } catch(error) {
-                console.log(error)
+        for (const items in cartItems) {
+            const itemInfo = productsData.find((product) => product._id === items);
+            for (const item in cartItems[items]) {
+                try {
+                    if (cartItems[items][item] > 0 && itemInfo) {
+                        totalAmount += itemInfo.price * cartItems[items][item];
+                    }
+                } catch (error) {
+                    console.error(error);
+                }
             }
-          }
         }
         return totalAmount;
-      }
+    };
 
     const value: ShopContextType = {
-        products: productsData, // Use the renamed alias here
+        products: productsData,
         currency,
         delivery_fee,
         search,
@@ -112,10 +183,13 @@ const ShopProvider = ({ children }: { children: ReactNode }) => {
         getCartCount,
         updateQuantity,
         getCartAmount,
-        navigate
+        resetCart,
+        placeOrder,
+        placedOrders,
+        setPlacedOrders,
+        setCartItems,
+        navigate,
     };
 
     return <ShopContext.Provider value={value}>{children}</ShopContext.Provider>;
 };
-
-export { ShopContext, ShopProvider };

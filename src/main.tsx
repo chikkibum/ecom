@@ -86,7 +86,7 @@ const AnimatedRoutes = () => {
           }
         />
         <Route
-          path="/placeorder"
+          path="/place-order"
           element={
             <PageTransition>
               <PlaceOrder />
