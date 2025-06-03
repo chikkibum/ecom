@@ -121,6 +121,91 @@ export const Product = () => {
             <button onClick={()=>addToCart(productData._id,selectedSize)} className="bg-black text-white px-8 py-3 text-sm active:bg-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
               ADD TO CART
             </button>
+            {/* Get Quotation Button */}
+            <button 
+              onClick={() => document.getElementById('quotationModal').showModal()} 
+              className="bg-blue-600 text-white px-8 py-3 text-sm mt-4 active:bg-blue-700 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600"
+            >
+              GET QUOTATION
+            </button>
+
+            {/* Quotation Modal */}
+            <dialog id="quotationModal" className="modal p-6 rounded-lg shadow-2xl max-w-md w-full bg-white dark:bg-gray-800 backdrop-blur-sm border border-gray-200 dark:border-gray-700">
+              <div className="modal-content">
+                <div className="flex justify-between items-center mb-6 border-b pb-4 dark:border-gray-700">
+                  <h3 className="text-xl font-bold dark:text-gray-200">Request Quotation</h3>
+                  <button 
+                    onClick={() => document.getElementById('quotationModal').close()}
+                    className="text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100 w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                  >
+                    ✕
+                  </button>
+                </div>
+                
+                <form className="flex flex-col gap-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <input 
+                      type="text" 
+                      placeholder="Full Name" 
+                      className="border p-3 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all" 
+                      required 
+                    />
+                    <input 
+                      type="email" 
+                      placeholder="Email Address" 
+                      className="border p-3 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all" 
+                      required 
+                    />
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <input 
+                      type="text" 
+                      placeholder="Country" 
+                      className="border p-3 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all" 
+                    />
+                    <input 
+                      type="tel" 
+                      placeholder="Phone Number" 
+                      className="border p-3 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all" 
+                      required 
+                    />
+                  </div>
+                  <input 
+                    type="text" 
+                    placeholder="MPN (Manufacturer Part Number)" 
+                    className="border p-3 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all" 
+                  />
+                  <div className="relative">
+                    <input 
+                      type="number" 
+                      placeholder="Quantity" 
+                      className="border p-3 rounded-md w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all" 
+                      required 
+                      min="1" 
+                    />
+                    <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex gap-1">
+                      <button type="button" className="px-2 bg-gray-100 dark:bg-gray-600 rounded">-</button>
+                      <button type="button" className="px-2 bg-gray-100 dark:bg-gray-600 rounded">+</button>
+                    </div>
+                  </div>
+                  <textarea 
+                    placeholder="Your Message" 
+                    rows={4} 
+                    className="border p-3 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all resize-none"
+                  ></textarea>
+                  
+                  <button 
+                    type="submit" 
+                    className="bg-blue-600 text-white py-3 mt-3 rounded-md hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600 font-medium tracking-wide transition-colors shadow-md hover:shadow-lg"
+                  >
+                    GET QUOTATION NOW
+                  </button>
+                  <p className="text-xs text-center text-gray-500 dark:text-gray-400 mt-2">
+                    We'll respond to your quotation request within 24 hours
+                  </p>
+                </form>
+              </div>
+            </dialog>
             <hr className="mt-8 sm:w-4/5 dark:border-gray-700" />
             <div className="text-sm text-gray-500 mt-5 flex flex-col gap-1 dark:text-gray-400">
               <p>100% Original product.</p>
