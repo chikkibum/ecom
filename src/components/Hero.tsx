@@ -1,6 +1,6 @@
 
-import { assets } from '../assets/assets'
-
+import { assets } from '../assets/assets';
+import hh from "../assets/main banner.jpg";
 export const Hero = () => {
   return (
     <div className='flex flex-col sm:flex-row border border-gray-400 dark:border-gray-600'>
@@ -19,7 +19,7 @@ export const Hero = () => {
         </div>
       </div>
       {/* Hero Right Side */}
-      <img className='w-full sm:w-1/2' src={assets.hero_img} alt="" />
+      <img className='w-full sm:w-1/2' src={hh} alt="" />
     </div>
   )
 }

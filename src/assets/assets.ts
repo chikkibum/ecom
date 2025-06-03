@@ -1,3 +1,9 @@
+import ecom1 from "./ecom1.jpg"
+import ecom2 from "./ecom2.jpg"
+import ecom3 from "./ecom3.jpg"
+import ecom4 from "./ecom4.jpg"
+import ecom5 from "./ecom5.jpg"
+import hukka from "./hukka.jpg"
 import p_img1 from './p_img1.png'
 import p_img2_1 from './p_img2_1.png'
 import p_img2_2 from './p_img2_2.png'
@@ -99,6 +105,78 @@ export const assets = {
 }
 
 export const products = [
+    {
+        _id: "hokka",
+        name: "Hukka",
+        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
+        price: 12999,
+        image: [hukka],
+        category: "Hokka",
+        subCategory: "Hokka",
+        sizes: ["S", "M", "L"],
+        date: 1716634345448,
+        bestseller: true
+    },
+    {
+        _id: "hokka_flavour1",
+        name: "COCOYAYA King Series Marco Hookah Golden (Black Base)",
+        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
+        price: 8999,
+        image: [ecom1],
+        category: "Hokka",
+        subCategory: "HokkaFlavour",
+        sizes: ["S", "M", "L"],
+        date: 1716634345448,
+        bestseller: true
+    },
+    {
+        _id: "hokka_flavour2",
+        name: "COCOYAYA King Series Marco Hookah Golden (Black Base)",
+        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
+        price: 8999,
+        image: [ecom2],
+        category: "Hokka",
+        subCategory: "HokkaFlavour",
+        sizes: ["S", "M", "L"],
+        date: 1716634345448,
+        bestseller: true
+    },
+    {
+        _id: "hokka_flavour3",
+        name: "COCOYAYA King Series Marco Hookah Golden (Black Base)",
+        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
+        price: 8999,
+        image: [ecom3],
+        category: "Hokka",
+        subCategory: "HokkaFlavour",
+        sizes: ["S", "M", "L"],
+        date: 1716634345448,
+        bestseller: true
+    },
+    {
+        _id: "hokka_flavour4",
+        name: "COCOYAYA King Series Marco Hookah Golden (Black Base)",
+        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
+        price: 8999,
+        image: [ecom4],
+        category: "Hokka",
+        subCategory: "HokkaFlavour",
+        sizes: ["S", "M", "L"],
+        date: 1716634345448,
+        bestseller: true
+    },
+    {
+        _id: "hokka_flavour5",
+        name: "COCOYAYA King Series Marco Hookah Golden (Black Base)",
+        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
+        price: 8999,
+        image: [ecom5],
+        category: "Hokka",
+        subCategory: "HokkaFlavour",
+        sizes: ["S", "M", "L"],
+        date: 1716634345448,
+        bestseller: true
+    },
     {
         _id: "aaaaa",
         name: "Women Round Neck Cotton Top",

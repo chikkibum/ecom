@@ -100,7 +100,7 @@ export const Collection = () => {
               showFilter ? "" : "hidden"
             } sm:block`}
           >
-            {["Men", "Women", "Kids"].map((item) => (
+            {["Men", "Women", "Kids","Hokka"].map((item) => (
               <p key={item} className="flex gap-2">
                 <input
                   className="w-4"
