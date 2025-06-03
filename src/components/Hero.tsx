@@ -1,5 +1,5 @@
 
-import { assets } from '../assets/assets';
+// import { assets } from '../assets/assets';
 import hh from "../assets/main banner.jpg";
 export const Hero = () => {
   return (
