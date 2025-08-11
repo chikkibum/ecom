@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { assets } from '@/assets/assets'
 
 const teamMembers = [
-  { name: 'Jane Doe', role: 'Founder & CEO', image: assets.p_img12 },
+  { name: 'Jane Doe', role: 'Founder & CEO', image: assets.p_img1 },
   { name: 'John Smith', role: 'Head of Design', image: assets.p_img2_1 },
   { name: 'Emily Brown', role: 'Sustainability Officer', image: assets.p_img1 },
 ]
