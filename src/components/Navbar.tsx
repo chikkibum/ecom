@@ -8,6 +8,7 @@ import { ReactNode } from "react";
 import { NavLink as RouterNavLink } from "react-router-dom";  // Import NavLink
 import { Profile } from "./Profile";
 import { CartIcon } from "./CartIcon";
+import logo from "../assets/Logo.jpg";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -55,7 +56,7 @@ const Navbar = () => {
           <div className="flex items-center justify-between gap-2">
             <div className="flex items-center  gap-12">
               <Link to="/" className="text-2xl font-bold text-foreground">
-                🧑‍💻
+                <img src={logo} alt="" className="w-12 h-12" />
               </Link>
 
               <ul className="hidden md:flex space-x-6">

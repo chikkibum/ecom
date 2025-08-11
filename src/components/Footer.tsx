@@ -1,15 +1,15 @@
 import { Link } from 'react-router-dom';
-
+import logo from '../assets/Logo.jpg'
 export const Footer = () => {
     return (
         <div className="container lg:w-[75vw] md:w-[80vw] mx-auto px-8 md:px-2 mt-2 md:mt-4">
             <div className='flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-14 my-10 mt-40 text-sm'>
                 <div>
                     <Link to="/">
-                    👨‍💻
+                        <img src={logo} alt="" className="w-12 h-12" />
                     </Link>
                     <p className='w-full md:w-2/3 text-gray-600'>
-                    Welcome to our online marketplace, where quality meets convenience.
+                        Welcome to our online marketplace, where quality meets convenience.
                     </p>
                 </div>
 
