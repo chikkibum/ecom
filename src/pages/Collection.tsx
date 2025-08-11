@@ -23,7 +23,7 @@ export const Collection = () => {
 
   const handleCategory = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    setCategory(prev => prev.includes(value) 
+    setCategory(prev => prev.includes(value)
       ? prev.filter(item => item !== value)
       : [...prev, value]
     );
@@ -41,20 +41,20 @@ export const Collection = () => {
   const applyFilterAndSort = useCallback(() => {
     let tempProducts = products.slice();
 
-    if(isSearchOpen && search){
+    if (isSearchOpen && search) {
       tempProducts = tempProducts.filter(item => item.name.toLowerCase().includes(search.toLowerCase()));
     }
-    
+
     // Apply category filters
     if (category.length > 0) {
       tempProducts = tempProducts.filter(item => category.includes(item.category));
     }
-    
+
     // Apply subcategory filters
     if (subCategory.length > 0) {
       tempProducts = tempProducts.filter(item => subCategory.includes(item.subCategory));
     }
-    
+
     // Apply sorting
     switch (sortType) {
       case "low-high":
@@ -67,7 +67,7 @@ export const Collection = () => {
         // For "relevant", keep original order
         break;
     }
-    
+
     setFilterProducts(tempProducts);
   }, [category, subCategory, sortType, products, search, isSearchOpen]);
 
@@ -96,11 +96,10 @@ export const Collection = () => {
 
           {/* Category Filter */}
           <div
-            className={`border border-gray-300 pl-5 py-3 mt-6 ${
-              showFilter ? "" : "hidden"
-            } sm:block`}
+            className={`border border-gray-300 pl-5 py-3 mt-6 ${showFilter ? "" : "hidden"
+              } sm:block`}
           >
-            {["Men", "Women", "Kids","Hokka"].map((item) => (
+            {["Hookah", "Shisha", "Accessories", "Tobacco"].map((item) => (
               <p key={item} className="flex gap-2">
                 <input
                   className="w-4"
@@ -116,11 +115,10 @@ export const Collection = () => {
 
           {/* Product Type Filter */}
           <div
-            className={`border border-gray-300 pl-5 py-3 mt-6 ${
-              showFilter ? "" : "hidden"
-            } sm:block`}
+            className={`border border-gray-300 pl-5 py-3 mt-6 ${showFilter ? "" : "hidden"
+              } sm:block`}
           >
-            {["Topwear", "Bottomwear", "Winterwear"].map((item) => (
+            {["Traditional", "Modern", "Premium", "Budget"].map((item) => (
               <p key={item} className="flex gap-2">
                 <input
                   className="w-4"
@@ -141,9 +139,9 @@ export const Collection = () => {
             <Title text1={"ALL"} text2={"COLLECTIONS"} />
 
             {/* Product Sort */}
-            <select 
+            <select
               value={sortType}
-              onChange={(e) => setSortType(e.target.value)} 
+              onChange={(e) => setSortType(e.target.value)}
               className="w-full dark:text-gray-200 dark:bg-black dark:outline-none sm:w-auto border-2 border-gray-500 text-xs sm:text-sm md:text-base px-2 py-1 md:py-2"
             >
               <option value="relevant">Sort by: Relevant</option>
@@ -151,7 +149,7 @@ export const Collection = () => {
               <option value="high-low">Sort by: High to Low</option>
             </select>
           </div>
-          
+
           {/* Products Grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-6">
             {filterProducts.map((item, index) => (

@@ -12,17 +12,12 @@ export const Product = () => {
   const { products = [], currency = "$", addToCart } = useContext(ShopContext) || {};
   const [productData, setProductData] = useState<ProductType | null>(null);
   const [image, setImage] = useState<string>("");
-  const [selectedSize, setSelectedSize] = useState<string>("");
 
   const fetchProductData = () => {
     const product = products.find((item) => item._id === productId);
     if (product) {
       setProductData(product);
       setImage(product.image[0]);
-      // Set first size as default selected
-      if (product.sizes.length > 0) {
-        setSelectedSize(product.sizes[0]);
-      }
     }
   };
 
@@ -44,13 +39,12 @@ export const Product = () => {
                 <img
                   key={index}
                   className={`w-[20%] sm:w-full sm:mb-3 flex-shrink-0 cursor-pointer transition duration-300 hover:scale-103
-                    ${
-                      image === item
-                        ? "border-2 border-gray-500 dark:border-gray-300"
-                        : ""
+                    ${image === item
+                      ? "border-2 border-gray-500 dark:border-gray-300"
+                      : ""
                     }`}
                   src={item}
-                  alt={`Product image ${index + 1}`}
+                  alt={`Hookah product image ${index + 1}`}
                   onClick={() => setImage(item)}
                 />
               ))}
@@ -98,33 +92,33 @@ export const Product = () => {
               {productData.description}
             </p>
 
-            {/* Size Selection */}
+            {/* Product Specifications */}
             <div className="flex flex-col gap-4 my-8">
-              <p className="font-medium dark:text-gray-200">Select Size</p>
-              <div className="flex gap-2 flex-wrap">
-                {productData.sizes.map((size, index) => (
-                  <button
-                    key={index}
-                    className={`border py-2 px-4 transition duration-200
-                      ${
-                        selectedSize === size
-                          ? "bg-black text-white dark:bg-gray-800 dark:border-gray-600"
-                          : "bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-200"
-                      }`}
-                    onClick={() => setSelectedSize(size)}
-                  >
-                    {size}
-                  </button>
-                ))}
+              <p className="font-medium dark:text-gray-200">Product Specifications</p>
+              <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="bg-gray-50 dark:bg-gray-700 p-3 rounded-md">
+                  <span className="font-medium text-gray-600 dark:text-gray-300">Category:</span>
+                  <p className="text-gray-800 dark:text-gray-200">{productData.category}</p>
+                </div>
+                <div className="bg-gray-50 dark:bg-gray-700 p-3 rounded-md">
+                  <span className="font-medium text-gray-600 dark:text-gray-300">Sub Category:</span>
+                  <p className="text-gray-800 dark:text-gray-200">{productData.subCategory}</p>
+                </div>
               </div>
             </div>
-            <button onClick={()=>addToCart(productData._id,selectedSize)} className="bg-black text-white px-8 py-3 text-sm active:bg-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+
+            {/* Add to Cart Button */}
+            <button
+              onClick={() => addToCart(productData._id)}
+              className="bg-black text-white px-8 py-3 text-sm active:bg-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 w-full sm:w-auto"
+            >
               ADD TO CART
             </button>
+
             {/* Get Quotation Button */}
-            <button 
-              onClick={() => document.getElementById('quotationModal').showModal()} 
-              className="bg-blue-600 text-white px-8 py-3 text-sm mt-4 active:bg-blue-700 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600"
+            <button
+              onClick={() => document.getElementById('quotationModal').showModal()}
+              className="bg-blue-600 text-white px-8 py-3 text-sm mt-4 active:bg-blue-700 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600 w-full sm:w-auto"
             >
               GET QUOTATION
             </button>
@@ -134,68 +128,68 @@ export const Product = () => {
               <div className="modal-content">
                 <div className="flex justify-between items-center mb-6 border-b pb-4 dark:border-gray-700">
                   <h3 className="text-xl font-bold dark:text-gray-200">Request Quotation</h3>
-                  <button 
+                  <button
                     onClick={() => document.getElementById('quotationModal').close()}
                     className="text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100 w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                   >
                     ✕
                   </button>
                 </div>
-                
+
                 <form className="flex flex-col gap-4">
                   <div className="grid grid-cols-2 gap-4">
-                    <input 
-                      type="text" 
-                      placeholder="Full Name" 
-                      className="border p-3 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all" 
-                      required 
+                    <input
+                      type="text"
+                      placeholder="Full Name"
+                      className="border p-3 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+                      required
                     />
-                    <input 
-                      type="email" 
-                      placeholder="Email Address" 
-                      className="border p-3 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all" 
-                      required 
+                    <input
+                      type="email"
+                      placeholder="Email Address"
+                      className="border p-3 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+                      required
                     />
                   </div>
                   <div className="grid grid-cols-2 gap-4">
-                    <input 
-                      type="text" 
-                      placeholder="Country" 
-                      className="border p-3 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all" 
+                    <input
+                      type="text"
+                      placeholder="Country"
+                      className="border p-3 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
                     />
-                    <input 
-                      type="tel" 
-                      placeholder="Phone Number" 
-                      className="border p-3 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all" 
-                      required 
+                    <input
+                      type="tel"
+                      placeholder="Phone Number"
+                      className="border p-3 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+                      required
                     />
                   </div>
-                  <input 
-                    type="text" 
-                    placeholder="MPN (Manufacturer Part Number)" 
-                    className="border p-3 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all" 
+                  <input
+                    type="text"
+                    placeholder="Product Model/Part Number"
+                    className="border p-3 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
                   />
                   <div className="relative">
-                    <input 
-                      type="number" 
-                      placeholder="Quantity" 
-                      className="border p-3 rounded-md w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all" 
-                      required 
-                      min="1" 
+                    <input
+                      type="number"
+                      placeholder="Quantity"
+                      className="border p-3 rounded-md w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+                      required
+                      min="1"
                     />
                     <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex gap-1">
                       <button type="button" className="px-2 bg-gray-100 dark:bg-gray-600 rounded">-</button>
                       <button type="button" className="px-2 bg-gray-100 dark:bg-gray-600 rounded">+</button>
                     </div>
                   </div>
-                  <textarea 
-                    placeholder="Your Message" 
-                    rows={4} 
+                  <textarea
+                    placeholder="Your Message"
+                    rows={4}
                     className="border p-3 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all resize-none"
                   ></textarea>
-                  
-                  <button 
-                    type="submit" 
+
+                  <button
+                    type="submit"
                     className="bg-blue-600 text-white py-3 mt-3 rounded-md hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600 font-medium tracking-wide transition-colors shadow-md hover:shadow-lg"
                   >
                     GET QUOTATION NOW
@@ -206,11 +200,13 @@ export const Product = () => {
                 </form>
               </div>
             </dialog>
+
             <hr className="mt-8 sm:w-4/5 dark:border-gray-700" />
             <div className="text-sm text-gray-500 mt-5 flex flex-col gap-1 dark:text-gray-400">
-              <p>100% Original product.</p>
+              <p>100% Original hookah products.</p>
               <p>Cash on delivery is available on this product.</p>
               <p>Easy return and exchange policy within 7 days.</p>
+              <p>Premium quality materials and craftsmanship.</p>
             </div>
           </div>
         </div>
