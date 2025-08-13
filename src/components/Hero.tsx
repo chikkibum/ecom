@@ -1,11 +1,20 @@
 
 // import { assets } from '../assets/assets';
-import hh from "../assets/main banner.jpg";
+// import hh from "../assets/main banner.jpg";
+import heroVid from "../assets/Video.MP4";
 export const Hero = () => {
   return (
     <div className='flex flex-col sm:flex-row border border-gray-400 dark:border-gray-600'>
+      <video
+        src={heroVid}
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="aspect-video object-cover"
+      ></video>
       {/* Hero Left Side */}
-      <div className='w-full sm:w-1/2 flex items-center justify-center py-10 sm:py-0'>
+      {/* <div className='w-full sm:w-1/2 flex items-center justify-center py-10 sm:py-0'>
         <div className='text-[#414141] dark:text-gray-200'>
           <div className='flex items-center gap-2'>
             <p className='w-8 md:w-11 h-[2px] bg-[#414141] dark:bg-gray-200'></p>
@@ -17,9 +26,9 @@ export const Hero = () => {
             <p className='w-8 md:w-11 h-[1px] bg-[#414141] dark:bg-gray-200'></p>
           </div>
         </div>
-      </div>
+      </div> */}
       {/* Hero Right Side */}
-      <img className='w-full sm:w-1/2' src={hh} alt="" />
+      {/* <img className='w-full sm:w-1/2' src={hh} alt="" /> */}
     </div>
   )
 }
