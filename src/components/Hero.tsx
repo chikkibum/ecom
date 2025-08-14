@@ -1,7 +1,12 @@
 
 // import { assets } from '../assets/assets';
 // import hh from "../assets/main banner.jpg";
-import heroVid from "../assets/Video.MP4";
+import heroVid from "../assets/Video.mp4";
+// If the file doesn't exist, you may need to:
+// 1. Check case sensitivity (MP4 vs mp4)
+// 2. Ensure the file exists in the assets directory
+// 3. Use a placeholder URL instead if needed
+// import heroVid from "https://sample-videos.com/video123/mp4/240/big_buck_bunny_240p_1mb.mp4";
 export const Hero = () => {
   return (
     <div className='flex flex-col sm:flex-row border border-gray-400 dark:border-gray-600'>
