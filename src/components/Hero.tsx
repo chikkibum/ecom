@@ -1,7 +1,7 @@
 
 // import { assets } from '../assets/assets';
 // import hh from "../assets/main banner.jpg";
-import heroVid from "../assets/Video.mp4";
+import heroVid from "../assets/Video.MP4";
 // If the file doesn't exist, you may need to:
 // 1. Check case sensitivity (MP4 vs mp4)
 // 2. Ensure the file exists in the assets directory
