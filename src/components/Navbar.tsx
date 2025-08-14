@@ -138,7 +138,10 @@ const Navbar = () => {
                   {isSearchOpen ? <X /> : <Search />}
                 </Button>
               </motion.div> */}
-              <SearchBar className={''} />
+              {/* Desktop SearchBar (visible only on lg screens) */}
+              <div className="w-64">
+                <SearchBar className="w-full h-10 z-10" />
+              </div>
 
               <Button variant="ghost" size="icon">
                 <Profile />
