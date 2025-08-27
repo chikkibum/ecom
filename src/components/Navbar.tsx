@@ -54,11 +54,16 @@ const Navbar = () => {
       <nav className="w-full py-4">
         <div className="container lg:w-[75vw] md:w-[80vw] mx-auto px-8 md:px-2 mt-2 md:mt-4">
           <div className="flex items-center justify-between gap-2">
-            <div className="flex items-center  gap-12">
-              <Link to="/" className="text-2xl font-bold text-foreground">
-                <img src={logo} alt="" className="w-12 h-12" />
-              </Link>
+            <div className="flex items-center  gap-12 w-full">
+              <div className="flex justify-between w-full lg:w-fit">
 
+                <Link to="/" className="text-2xl font-bold text-foreground">
+                  <img src={logo} alt="" className="w-12 h-12" />
+                </Link>
+                <div className="w-64 flex lg:hidden">
+                  <SearchBar className="w-full h-10 z-10" />
+                </div>
+              </div>
               <ul className="hidden md:flex space-x-6">
                 <NavLink href="/">Home</NavLink>
                 <NavLink href="/collection">Collection</NavLink>

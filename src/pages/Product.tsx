@@ -8,8 +8,10 @@ import { assets } from "@/assets/assets";
 import { RelatedProducts } from "@/components/RelatedProducts";
 
 export const Product = () => {
+  // Weight selection state
+  const [selectedWeight, setSelectedWeight] = useState<string>("");
   const { productId } = useParams<{ productId: string }>();
-  const { products = [], currency = "$", addToCart } = useContext(ShopContext) || {};
+  const { products = [], addToCart } = useContext(ShopContext) || {};
   const [productData, setProductData] = useState<ProductType | null>(null);
   const [image, setImage] = useState<string>("");
 
@@ -27,6 +29,12 @@ export const Product = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [productId, products]);
 
+  // Static weight options
+  const availableWeights = ["50g", "250g", "500g", "1kg"];
+  useEffect(() => {
+    setSelectedWeight(availableWeights[0]);
+  }, []);
+
   return productData ? (
     <div className="container lg:w-[75vw] md:w-[80vw] mx-auto px-8 md:px-2 mt-2 md:mt-4">
       <div className="border-t-2 pt-10 transition-opacity ease-in duration-500 opacity-100 dark:border-gray-700">
@@ -38,11 +46,22 @@ export const Product = () => {
               {productData.image.map((item, index) => (
                 <img
                   key={index}
-                  className={`w-[20%] sm:w-full sm:mb-3 flex-shrink-0 cursor-pointer transition duration-300 hover:scale-103
+                  className={`w-[20%] sm:w-full sm:mb-3 flex-shrink-0 cursor-pointer transition duration-300 hover:scale-50   ease-in-out
                     ${image === item
                       ? "border-2 border-gray-500 dark:border-gray-300"
                       : ""
                     }`}
+
+
+                  style={{ transform: "scale(1)" }}
+                  onMouseMove={e => {
+                    const img = e.currentTarget;
+                    img.style.transform = "scale(1.1)";
+                  }}
+                  onMouseLeave={e => {
+                    const img = e.currentTarget;
+                    img.style.transform = "scale(1)";
+                  }}
                   src={item}
                   alt={`Hookah product image ${index + 1}`}
                   onClick={() => setImage(item)}
@@ -83,11 +102,21 @@ export const Product = () => {
               <p className="pl-2 text-gray-600 dark:text-gray-400">(122)</p>
             </div>
 
-            {/* Price & Description */}
-            <p className="mt-5 text-3xl font-medium dark:text-gray-100">
-              {currency}
-              {productData.price.toFixed(2)}
-            </p>
+            {/* Weight & Description */}
+            {/* Weight Select Option */}
+            <div className="mt-5">
+              <label htmlFor="weight-select" className="block text-lg font-medium dark:text-gray-100 mb-2">Weight:</label>
+              <select
+                id="weight-select"
+                value={selectedWeight}
+                onChange={e => setSelectedWeight(e.target.value)}
+                className="border rounded-md px-4 py-2 dark:bg-gray-700 dark:text-white dark:border-gray-600"
+              >
+                {availableWeights.map((w, idx) => (
+                  <option key={idx} value={w}>{w}</option>
+                ))}
+              </select>
+            </div>
             <p className="mt-5 text-gray-500 md:w-4/5 dark:text-gray-400">
               {productData.description}
             </p>
@@ -104,13 +133,15 @@ export const Product = () => {
                   <span className="font-medium text-gray-600 dark:text-gray-300">Sub Category:</span>
                   <p className="text-gray-800 dark:text-gray-200">{productData.subCategory}</p>
                 </div>
+
               </div>
             </div>
 
             {/* Add to Cart Button */}
             <button
-              onClick={() => addToCart(productData._id)}
+              onClick={() => addToCart(productData._id, selectedWeight)}
               className="bg-black text-white px-8 py-3 text-sm active:bg-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 w-full sm:w-auto"
+              disabled={!selectedWeight}
             >
               ADD TO CART
             </button>
@@ -119,6 +150,7 @@ export const Product = () => {
             <button
               onClick={() => document.getElementById('quotationModal').showModal()}
               className="bg-blue-600 text-white px-8 py-3 text-sm mt-4 active:bg-blue-700 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600 w-full sm:w-auto"
+              disabled={!selectedWeight}
             >
               GET QUOTATION
             </button>
@@ -137,6 +169,26 @@ export const Product = () => {
                 </div>
 
                 <form className="flex flex-col gap-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <input
+                      type="text"
+                      placeholder="Address"
+                      className="border p-3 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+                      required
+                    />
+                    <input
+                      type="text"
+                      placeholder="Zipcode"
+                      className="border p-3 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+                      required
+                    />
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="State"
+                    className="border p-3 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+                    required
+                  />
                   <div className="grid grid-cols-2 gap-4">
                     <input
                       type="text"
@@ -169,6 +221,28 @@ export const Product = () => {
                     placeholder="Product Model/Part Number"
                     className="border p-3 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
                   />
+                  <select
+                    id="modal-weight-select"
+                    defaultValue={selectedWeight}
+                    className="border p-3 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                    required
+                  >
+                    {availableWeights.map((w, idx) => (
+                      <option key={idx} value={w}>{w}</option>
+                    ))}
+                  </select>
+                  <select
+                    id="modal-type-select"
+                    className="border p-3 rounded-md dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                    required
+                  >
+                    <option value="">Select Type</option>
+                    <option value="personal">Personal Use</option>
+                    <option value="catering">Catering</option>
+                    <option value="shop">Shop Owner</option>
+                    <option value="wholesale">Wholesale</option>
+                    <option value="dealership">Dealership</option>
+                  </select>
                   <div className="relative">
                     <input
                       type="number"

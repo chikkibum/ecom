@@ -8,6 +8,7 @@ export const Footer = () => {
                     <Link to="/">
                         <img src={logo} alt="" className="w-12 h-12" />
                     </Link>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14023.993101653612!2d77.09589770694089!3d28.509699611709276!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1ead88ec2f2f%3A0xb31fe67da081df43!2sRajokri%20Village%2C%20Rajokri%2C%20New%20Delhi%2C%20Delhi!5e0!3m2!1sen!2sin!4v1756261761076!5m2!1sen!2sin" width="300" height="100" className='my-5 rounded-2xl'></iframe>
                     <p className='w-full md:w-2/3 text-gray-600'>
                         Welcome to our online marketplace, where quality meets convenience.
                     </p>

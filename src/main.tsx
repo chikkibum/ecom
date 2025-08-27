@@ -18,6 +18,7 @@ import { ShopProvider } from "./context/ShopContext";
 import { Footer } from "./components/Footer";
 import { PageTransition } from "./components/PageTransition"; // Page transition component
 import { Toaster } from "@/components/ui/sonner"
+import { SocialMedia } from "./components/SocialMedia";
 
 // Wrap routes in AnimatePresence for smooth transitions
 const AnimatedRoutes = () => {
@@ -26,7 +27,8 @@ const AnimatedRoutes = () => {
   return (
     
     <AnimatePresence >
-            <Toaster />
+      <Toaster />
+      <SocialMedia />
       <Routes location={location} key={location.pathname}>
 
         <Route

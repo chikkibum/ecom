@@ -22,6 +22,7 @@ export default function OrderForm() {
     expiry: '',
     cvv: '',
     paymentMethod: 'card', // default payment method
+    orderNotes: ""
   });
   const [errors, setErrors] = useState({});
   const { cartItems, getCartAmount, getCartCount, setCartItems, setPlacedOrders } = useContext(ShopContext);
@@ -143,6 +144,16 @@ export default function OrderForm() {
                 id="zipcode"
                 placeholder="10001"
                 value={formData.zipcode}
+                onChange={handleInputChange}
+              />
+              {errors.zipcode && <p className="text-red-500 text-sm">{errors.zipcode}</p>}
+            </div>
+            <div>
+              <Label htmlFor="orderNotes">Order Note</Label>
+              <Input
+                id="Order Note"
+                placeholder="Order Note"
+                value={formData.orderNotes}
                 onChange={handleInputChange}
               />
               {errors.zipcode && <p className="text-red-500 text-sm">{errors.zipcode}</p>}

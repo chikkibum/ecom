@@ -14,7 +14,18 @@ export const Collection = () => {
   const [filterProducts, setFilterProducts] = useState(products); // Initialize with products
   const [category, setCategory] = useState<string[]>([]);
   const [subCategory, setSubCategory] = useState<string[]>([]);
-  const [sortType, setSortType] = useState("relevant"); // Fixed typo in "relevant"
+  const [sortType, setSortType] = useState("relevant");
+  // Price filter state
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(0);
+  // Set initial min/max price based on products
+  useEffect(() => {
+    if (products.length > 0) {
+      const prices = products.map(p => p.price);
+      setMinPrice(Math.min(...prices));
+      setMaxPrice(Math.max(...prices));
+    }
+  }, [products]);
 
   // Initialize products on mount
   useEffect(() => {
@@ -55,6 +66,11 @@ export const Collection = () => {
       tempProducts = tempProducts.filter(item => subCategory.includes(item.subCategory));
     }
 
+    // Apply price filter
+    tempProducts = tempProducts.filter(item => {
+      return item.price >= minPrice && item.price <= maxPrice;
+    });
+
     // Apply sorting
     switch (sortType) {
       case "low-high":
@@ -69,7 +85,7 @@ export const Collection = () => {
     }
 
     setFilterProducts(tempProducts);
-  }, [category, subCategory, sortType, products, search, isSearchOpen]);
+  }, [category, subCategory, sortType, products, search, isSearchOpen, minPrice, maxPrice]);
 
   // Single effect to handle both filtering and sorting
   useEffect(() => {
@@ -131,13 +147,36 @@ export const Collection = () => {
               </p>
             ))}
           </div>
+          {/* Price Filter */}
+          <div className={`border border-gray-300 pl-5 py-3 mt-6 ${showFilter ? "" : "hidden"} sm:block`}>
+            <div className="flex flex-col gap-2">
+              <label className="font-semibold">Price Range</label>
+              <div className="flex gap-2 items-center">
+                <span>Min:</span>
+                <input
+                  type="number"
+                  className="w-16 border px-1 py-0.5 rounded"
+                  min={0}
+                  value={minPrice}
+                  onChange={e => setMinPrice(Number(e.target.value))}
+                />
+                <span>Max:</span>
+                <input
+                  type="number"
+                  className="w-16 border px-1 py-0.5 rounded"
+                  min={minPrice}
+                  value={maxPrice}
+                  onChange={e => setMaxPrice(Number(e.target.value))}
+                />
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Right Side */}
         <div className="flex-1">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0 mb-4">
             <Title text1={"ALL"} text2={"COLLECTIONS"} />
-
             {/* Product Sort */}
             <select
               value={sortType}
@@ -149,7 +188,6 @@ export const Collection = () => {
               <option value="high-low">Sort by: High to Low</option>
             </select>
           </div>
-
           {/* Products Grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-6">
             {filterProducts.map((item, index) => (
@@ -166,4 +204,4 @@ export const Collection = () => {
       </div>
     </div>
   );
-};
+}
