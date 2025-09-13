@@ -2,14 +2,14 @@
 export const Hero = () => {
   return (
     <div className='flex flex-col sm:flex-row border border-gray-400 dark:border-gray-600'>
-      <video
+      {/* <video
         src={"https://res.cloudinary.com/dwtytn7fl/video/upload/v1755152798/IMG_3975_i1c1dp.mp4"}
         autoPlay
         muted
         loop
         playsInline
         className="aspect-video object-cover"
-      ></video>
+      ></video> */}
       {/* Hero Left Side */}
       {/* <div className='w-full sm:w-1/2 flex items-center justify-center py-10 sm:py-0'>
         <div className='text-[#414141] dark:text-gray-200'>
@@ -25,7 +25,7 @@ export const Hero = () => {
         </div>
       </div> */}
       {/* Hero Right Side */}
-      {/* <img className='w-full sm:w-1/2' src={hh} alt="" /> */}
+      <img className='w-full aspect-video' src={"https://res.cloudinary.com/dwtytn7fl/image/upload/v1757781366/bg-header_wmpeb5.png"} alt="" />
     </div>
   )
 }
