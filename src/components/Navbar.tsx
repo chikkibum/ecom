@@ -108,6 +108,8 @@ const Navbar = () => {
               </ul>
             </div>
 
+
+
             <div className="hidden lg:flex items-center space-x-4">
               {/* <div className="search__container">
                 <AnimatePresence>
@@ -165,7 +167,6 @@ const Navbar = () => {
               <ModeToggle />
               <Button variant="ghost" size="icon">
                 <Profile />
-
               </Button>
               <Button variant="ghost" size="icon">
                 <Link to="/cart">
@@ -198,6 +199,9 @@ const Navbar = () => {
                   />
                 </svg>
               </Button>
+            </div>
+            <div className="flex md:hidden">
+              <ModeToggle />
             </div>
           </div>
 
