@@ -28,7 +28,7 @@ export const LatestCollection = () => {
           Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem I
         </p>
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 gap-y-8">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4 gap-y-8">
         {latestProducts.map((item, index) => (
           <ProductItem
             key={index}

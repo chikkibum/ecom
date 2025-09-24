@@ -35,8 +35,9 @@ export const ProductItem = ({ id, image, name, price }: ProductItemProps) => {
           alt=""
         />
       </div>
-      <p className='pt-3 pb-1 text-sm dark:text-gray-200'>{name}</p>
-      <p className='text-sm font-medium dark:text-gray-400'>{currency} {price}</p>
+      <div className='flex flex-row gap-5 items-center px-5'>
+        <p className='pt-3 pb-1 text-sm dark:text-gray-200 w-[75%]'>{name}</p>
+        <p className='text-sm font-medium dark:text-gray-400 flex flex-row w-1/4'>{currency} {price}</p></div>
     </Link>
   )
 }

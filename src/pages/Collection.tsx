@@ -147,6 +147,24 @@ export const Collection = () => {
               </p>
             ))}
           </div>
+
+          <div
+            className={`border border-gray-300 pl-5 py-3 mt-6 ${showFilter ? "" : "hidden"
+              } sm:block`}
+          >
+            {["Al Fakher", "Adalya", "Starbuzz", "MYA"].map((item) => (
+              <p key={item} className="flex gap-2">
+                <input
+                  className="w-4"
+                  type="checkbox"
+                  value={item}
+                  checked={subCategory.includes(item)}
+                  onChange={handleSubCategory}
+                />
+                <label htmlFor={item.toLowerCase()}>{item}</label>
+              </p>
+            ))}
+          </div>
           {/* Price Filter */}
           <div className={`border border-gray-300 pl-5 py-3 mt-6 ${showFilter ? "" : "hidden"} sm:block`}>
             <div className="flex flex-col gap-2">
