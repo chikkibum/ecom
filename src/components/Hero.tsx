@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
-import img from "@/assets/IMG_6402.JPG"
 export const Hero = () => {
   const images = [
-    img,
+    "https://res.cloudinary.com/dwtytn7fl/image/upload/v1758687280/IMG_6402_dqxpbk.jpg",
     "https://res.cloudinary.com/dwtytn7fl/image/upload/v1757781366/bg-header_wmpeb5.png",
     "https://preventcancer.org/wp-content/uploads/2024/11/Untitled-design-10-800x533.png",
     "https://akm-img-a-in.tosshub.com/indiatoday/images/story/202210/hookah_bar.jpg?VersionId=OLwnCBXN3GFRm1doWxJfIvOVCNE_3JOE&size=690:388",
