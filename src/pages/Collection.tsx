@@ -6,7 +6,7 @@ import { ShopContext } from "../context/ShopContext";
 import { assets } from "@/assets/assets";
 import Title from "@/components/Title";
 import { ProductItem } from "@/components/ProductItem";
-import { SearchBar } from "@/components/SearchBar";
+// import { SearchBar } from "@/components/SearchBar";
 
 export const Collection = () => {
   const { products = [], search, isSearchOpen } = useContext(ShopContext) || {};
