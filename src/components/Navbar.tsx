@@ -35,7 +35,7 @@ const NavLink = ({ href, children }: NavLinkProps) => (
     <RouterNavLink
       to={href}
       className={({ isActive }) =>
-        `text-foreground hover:text-primary transition-colors ${isActive ? 'underline ' : '' // Underline when active
+        `text-foreground hover:text-primary transition-colors ${isActive ? ' ' : '' // Underline when active
         }`
       }
     >

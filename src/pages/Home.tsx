@@ -11,7 +11,7 @@ export const Home = () => {
 
 
   return (
-    <div className="container lg:w-[75vw] md:w-[80vw] mx-auto px-8 md:px-2 mt-2 md:mt-4">
+    <div className="container  px-8 md:px-2 mt-2 md:mt-4">
       <HeroTwo />
       <Brands />
       <LatestCollection />

@@ -1,41 +1,32 @@
 import Title from "./Title";
-
+import logo2 from "@/assets/logo2.png"
+import logo3 from "@/assets/logo3.png"
+import logo4 from "@/assets/logo4.png"
+import logo5 from "@/assets/logo5.png"
+import logo6 from "@/assets/logo6.png"
+import logo7 from "@/assets/logo7.png"
+import logo8 from "@/assets/logo8.jpg"
 const brands = [
     {
-        name: "Google",
-        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/375px-Google_2015_logo.svg.png",
+        src: logo2,
     },
     {
-        name: "Google",
-        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/375px-Google_2015_logo.svg.png",
+        src: logo3,
     },
     {
-        name: "Google",
-        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/375px-Google_2015_logo.svg.png",
+        src: logo4,
     },
     {
-        name: "Google",
-        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/375px-Google_2015_logo.svg.png",
+        src: logo5,
     },
     {
-        name: "Google",
-        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/375px-Google_2015_logo.svg.png",
+        src: logo6,
     },
     {
-        name: "Google",
-        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/375px-Google_2015_logo.svg.png",
+        src: logo7,
     },
     {
-        name: "Google",
-        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/375px-Google_2015_logo.svg.png",
-    },
-    {
-        name: "Google",
-        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/375px-Google_2015_logo.svg.png",
-    },
-    {
-        name: "Google",
-        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/375px-Google_2015_logo.svg.png",
+        src: logo8,
     },
 
     // Add more brands here as needed
@@ -60,11 +51,11 @@ export const Brands = () => (
                     <div key={idx} className="flex flex-col items-center min-w-[120px]">
                         <img
                             src={brand.src}
-                            alt={brand.name}
-                            className="h-16 w-auto object-contain mb-2 filter grayscale"
+                            // alt={brand.name}
+                            className="h-16 w-auto object-contain mb-2"
                             loading="lazy"
                         />
-                        <span className="text-sm text-gray-600 dark:text-gray-300">{brand.name}</span>
+                        {/* <span className="text-sm text-gray-600 dark:text-gray-300">{brand.name}</span> */}
                     </div>
                 ))}
             </div>

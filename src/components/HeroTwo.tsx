@@ -1,7 +1,7 @@
 // import img from "@/assets/ecom1.jpg"
 export const HeroTwo = () => {
   return (
-    <div className='flex flex-row gap-5'>
+    <div className='flex flex-row gap-5 lg:w-[75vw] md:w-[80vw] mx-auto'>
       <div className="flex flex-col gap-10 p-12 w-[80%]">
         <div>
           <h1 className="font-bold text-6xl">ART OF HOOKAH</h1>

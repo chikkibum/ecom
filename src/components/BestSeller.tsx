@@ -6,35 +6,35 @@ import { ProductItem } from './ProductItem'
 export const BestSeller = () => {
 
 
-    interface Product {
-        _id: string;
-        name: string;
-        description: string;
-        price: number;
-        image: string[];
-        category: string;
-        subCategory: string;
-        sizes: string[];
-        date: number;
-        bestseller: boolean;
-    }
+  interface Product {
+    _id: string;
+    name: string;
+    description: string;
+    price: number;
+    image: string[];
+    category: string;
+    subCategory: string;
+    sizes: string[];
+    date: number;
+    bestseller: boolean;
+  }
 
   const context = useContext(ShopContext);
   if (!context) throw new Error('useContext must be used within ShopContext.Provider');
-  const {products} = context;
+  const { products } = context;
 
 
   const [bestSeller, setBestSeller] = useState<Product[]>([]);
 
-  useEffect(()=>{
-    const bestProduct = products.filter((item: Product)=> item.bestseller)
+  useEffect(() => {
+    const bestProduct = products.filter((item: Product) => item.bestseller)
     setBestSeller(bestProduct);
   }, [products])
 
   return (
-    <div className='my-10'>
+    <div className='my-10 lg:w-[75vw] md:w-[80vw] mx-auto'>
       <div className='text-center text-3xl py-8'>
-        <Title text1={'BEST'} text2={'SELLERS'}/>
+        <Title text1={'BEST'} text2={'SELLERS'} />
         <p className='w-3/4 m-auto text-xs sm:text-sm md:text-base text-gray-600 dark:text-gray-300'>
           Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ips
         </p>
