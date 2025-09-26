@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import ban1 from "@/assets/ban1.jpg"
-import ban2 from "@/assets/ban2.jpg"
-import ban3 from "@/assets/ban3.jpg"
-export const Hero = () => {
+import ban4 from "@/assets/ban4.jpg"
+import ban5 from "@/assets/ban5.jpg"
+import ban6 from "@/assets/ban6.jpg"
+export const HeroThree = () => {
   const images = [
-    ban1,
-    ban2,
-    ban3
+    ban4,
+    ban5,
+    ban6
   ];
   const [current, setCurrent] = useState(0);
 

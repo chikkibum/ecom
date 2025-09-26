@@ -138,13 +138,26 @@ export const Product = () => {
             </div>
 
             {/* Add to Cart Button */}
-            <button
-              onClick={() => addToCart(productData._id, selectedWeight)}
-              className="bg-black text-white px-8 py-3 text-sm active:bg-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 w-full sm:w-auto"
-              disabled={!selectedWeight}
-            >
-              ADD TO CART
-            </button>
+            <div className="block sm:hidden">
+              <div className="fixed bottom-14 left-0 right-0 z-[60] bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 px-4 py-3 flex justify-center w-full mb-2">
+                <button
+                  onClick={() => addToCart(productData._id, selectedWeight)}
+                  className="bg-black text-white px-8 py-3 text-sm rounded active:bg-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 w-full max-w-md"
+                  disabled={!selectedWeight}
+                >
+                  ADD TO CART
+                </button>
+              </div>
+            </div>
+            <div className="hidden sm:block">
+              <button
+                onClick={() => addToCart(productData._id, selectedWeight)}
+                className="bg-black text-white px-8 py-3 text-sm active:bg-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 w-full sm:w-auto"
+                disabled={!selectedWeight}
+              >
+                ADD TO CART
+              </button>
+            </div>
 
             {/* Get Quotation Button */}
             <button
