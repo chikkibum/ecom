@@ -8,7 +8,7 @@ import { ReactNode } from "react";
 import { NavLink as RouterNavLink } from "react-router-dom";  // Import NavLink
 import { Profile } from "./Profile";
 import { CartIcon } from "./CartIcon";
-import logo from "../assets/Logo.jpg";
+import logo from "../assets/logoHookha.png";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -58,7 +58,7 @@ const Navbar = () => {
               <div className="flex justify-between w-full lg:w-fit">
 
                 <Link to="/" className="text-2xl font-bold text-foreground">
-                  <img src={logo} alt="" className="w-12 h-12" />
+                  <img src={logo} alt="" className="w-20 h-16" />
                 </Link>
                 <div className="w-64 flex lg:hidden">
                   <SearchBar className="w-full h-10 z-10" />
